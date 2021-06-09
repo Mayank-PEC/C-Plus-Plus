@@ -3,7 +3,7 @@ using namespace std;
 
 #define V 4
 #define INFINITY 99999
-
+  
 int graph[V][V] = {
 	{0, 5, 1, 2},
 	{5, 0, 3, 3},

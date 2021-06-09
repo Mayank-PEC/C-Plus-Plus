@@ -4,13 +4,18 @@ using namespace std;
 #define V 6
 #define INFINITY 99999
 
+
+
 int graph[V][V] = {
-	{0, 4, 1, 4, INFINITY, INFINITY},
+	{0, 4, 1, 4, INFINITY, INFINITY},  
 	{4, 0, 3, 8, 3, INFINITY},
 	{1, 3, 0, INFINITY, 1, INFINITY},
 	{4, 8, INFINITY, 0, 5, 7},
 	{INFINITY, 3, 1, 5, 0, INFINITY},
 	{INFINITY, INFINITY, INFINITY, 7, INFINITY, 0}};
+
+
+
 
 void findMinimumEdge()
 {

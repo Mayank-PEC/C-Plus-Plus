@@ -5,21 +5,21 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-vector<int> root, rnk;
+vector<int> parent, rnk;
 
 void CreateSet(int n) {
-  root = vector<int> (n+1);
+  parent = vector<int> (n+1);
   rnk = vector<int> (n+1, 1);
   for (int i = 1; i <= n; ++i) {
-    root[i] = i;
+    parent[i] = i;
   }
 }
 
 int Find(int x) {
-  if (root[x] == x) {
+  if (parent[x] == x) {
     return x;
   }
-  return root[x] = Find(root[x]);
+  return parent[x] = Find(parent[x]);
 }
 
 bool InSameUnion(int x, int y) {
@@ -30,11 +30,13 @@ void Union(int x, int y) {
   int a = Find(x), b = Find(y);
   if (a != b) {
     if (rnk[a] < rnk[b]) {
-      root[a] = b;
+      rnk[b]+=rnk[a];
+      parent[a] = b;
     } else if (rnk[a] > rnk[b]) {
-      root[b] = a;
+      rnk[a]+=rnk[b];
+      parent[b] = a;
     } else {
-      root[a] = b;
+      parent[a] = b;
       ++rnk[b];
     }
   }
@@ -45,7 +47,7 @@ int main() {
   int n = 100;
   CreateSet(n);
   for (int i = 1; i <= 100; ++i) {
-    if (root[i] != i) {
+    if (parent[i] != i) {
       cout << "Fail" << endl;
       break;
     }

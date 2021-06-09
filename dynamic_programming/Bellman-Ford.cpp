@@ -126,3 +126,83 @@ int main()
 
 	return 0;
 }
+
+
+
+
+/***************************** My implementation for CP ******************************/
+
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+	int isNegativeWeightCycle(int n, vector<vector<int>>edges){
+	    // Code here
+	    int dist[n];
+	    for(int i=0;i<n;i++)
+	      dist[i]=INT_MAX;
+	      
+	      dist[0]=0;
+	    for(int i=0;i<=n-1;i++)
+	    {
+	        for(int r=0;r<edges.size();r++)
+	        {
+	            if(dist[edges[r][0]]!=INT_MAX && dist[edges[r][1]]>dist[edges[r][0]]+edges[r][2])
+	              dist[edges[r][1]]=dist[edges[r][0]]+edges[r][2];
+	        }
+	    }
+	   
+	   for(int r=0;r<edges.size();r++)
+	        {
+	            if(dist[edges[r][0]]!=INT_MAX &&  dist[edges[r][1]]>dist[edges[r][0]]+edges[r][2])
+	                   return 1;
+	            
+	        }
+	   
+	  
+	   
+	   return 0; 
+	}
+};
+
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n, m;
+		cin >> n >> m;
+		vector<vector<int>>edges;
+		for(int i = 0; i < m; i++){
+			int x, y, z;
+			cin >> x >> y >> z;
+			edges.push_back({x,y,z});
+		}
+		Solution obj;
+		int ans = obj.isNegativeWeightCycle(n, edges);
+		cout << ans <<"\n";
+	}
+	return 0;
+}  
+
+/*************************************************************************/
+
+
+
+
+
+
+
+
+// Ques :- Can we use Dijksra’s algorithm for shortest paths for graphs
+//  with negative weights – one idea can be, calculate the minimum 
+//  weight value, add a positive value (equal to absolute value of 
+//  minimum weight value) to all weights and run the Dijksra’s 
+//  algorithm for the modified graph. Will this algorithm work?
+
+// Ans :- this doesn't work because shortest path with a lot 
+// of edges may have bigger weight than a longer path 
+// with less edges.
+
+//can someone please explain why are we repeating the process |v| -1 times?
+//Cause a vertice can have at most v - 1 edges, since there are v Vertices including it
+

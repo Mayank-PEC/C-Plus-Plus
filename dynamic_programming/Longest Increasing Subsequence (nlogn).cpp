@@ -2,8 +2,7 @@
 // in O(n log n)
 // tested on : https://cses.fi/problemset/task/1145/
 
-#include <iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
 int LIS(int arr[], int n)
 {

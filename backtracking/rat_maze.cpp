@@ -30,13 +30,13 @@ int solveMaze(int currposrow, int currposcol, int maze[size][size], int soln[siz
 	{
 		soln[currposrow][currposcol] = 1;
 
-		// if there exist a solution by moving one step ahead in a collumn
+		// if there exist a solution by moving one step ahead in a collumn // move right
 		if ((currposcol < size - 1) && maze[currposrow][currposcol + 1] == 1 && solveMaze(currposrow, currposcol + 1, maze, soln))
 		{
 			return 1;
 		}
 
-		// if there exists a solution by moving one step ahead in a row
+		// if there exists a solution by moving one step ahead in a row  // move down
 		if ((currposrow < size - 1) && maze[currposrow + 1][currposcol] == 1 && solveMaze(currposrow + 1, currposcol, maze, soln))
 		{
 			return 1;
@@ -51,7 +51,7 @@ int solveMaze(int currposrow, int currposcol, int maze[size][size], int soln[siz
 int main(int argc, char const *argv[])
 {
 	int maze[size][size] = {
-		{1, 0, 1, 0},
+		{1, 1, 1, 0},
 		{1, 0, 1, 1},
 		{1, 0, 0, 1},
 		{1, 1, 1, 1}};
@@ -66,8 +66,8 @@ int main(int argc, char const *argv[])
 		}
 	}
 
-	int currposrow = 0;
-	int currposcol = 0;
+	int currposrow = 0; // starting row 
+	int currposcol = 0; // starting column
 	solveMaze(currposrow, currposcol, maze, soln);
 	return 0;
 }

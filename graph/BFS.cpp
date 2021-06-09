@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 class graph
 {
@@ -14,7 +14,8 @@ public:
 graph::graph(int v)
 {
 	this->v = v;
-	this->adj = new list<int>[v];
+	this->adj = new list<int>[v];      // int *a =new int[]   
+	// this is same as making an array of vectors ....but this is an array of lists
 }
 void graph::addedge(int src, int dest)
 {

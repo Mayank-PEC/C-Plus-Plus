@@ -110,3 +110,107 @@ int main()
 
 	return 0;
 }
+
+
+/******************************** MY implementation for CP *****************************/
+
+// The Floyd Warshall Algorithm is for solving the All Pairs 
+// Shortest Path problem. The problem is to find shortest distances
+//  between every pair of vertices in a given edge weighted directed Graph. 
+
+// This algorithm is also used to find shortest distances 
+// between every pair of vertices in a given edge weighted UNDIRECTED graph.
+
+
+// 1. does it work for -ve weights?   ans  ----> yes
+// 2. does it work for undirected graph?  ans ---> yes 
+// but it should not contain -ve cycle 
+
+//Detect if negative cycle exists.
+// for (i = 0; i < V; i++)
+// for (j = 0; j < V; j++)
+// if( i == j && matrix[i][j] != 0 )
+// cout << "Negative cycle detected!\n" << endl;
+// self loops are always taken as zero in the input graph
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+  public:
+	void shortest_distance(vector<vector<int>>&matrix){
+	    // Code here
+	    
+	    int n = matrix.size();
+	    
+	    for(int i=0;i<n;i++)
+	    {
+	        for(int j=0;j<n;j++)
+	        {
+	            if(matrix[i][j]==-1)
+	              matrix[i][j]=INT_MAX;
+	        }
+	    }
+	    
+	    
+	    for(int k=0;k<n;k++)
+	    {
+	        for(int i=0;i<n;i++)
+	        {
+	            for(int j=0;j<n;j++)
+	            {
+	               if(i==j || i==k || j==k)
+	                  continue;
+	                  
+	                  
+	               if(matrix[i][k]!=INT_MAX && matrix[k][j]!=INT_MAX) //VVIP STEP...
+	                      matrix[i][j] = min(matrix[i][j],matrix[i][k]+matrix[k][j]);
+	            }
+	        }
+	    }
+	    
+	     for(int i=0;i<n;i++)
+	    {
+	        for(int j=0;j<n;j++)
+	        {
+	            if(matrix[i][j]==INT_MAX)
+	              matrix[i][j]=-1;
+	        }
+	    }
+	    
+	    
+	}
+};
+
+
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n;
+		cin >> n;
+		vector<vector<int>>matrix(n, vector<int>(n, -1));
+
+		// taken a matrix as it is best suited for this algorithm
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				cin >> matrix[i][j];
+			}
+		}
+		Solution obj;
+		obj.shortest_distance(matrix);
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				cout << matrix[i][j] << " ";
+			}
+			cout << "\n";
+		}
+	}
+	return 0;
+}  
+
+/************************************************************************************/
+
+

@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 int n, m; // For number of Vertices (V) and number of edges (E)
@@ -16,7 +14,7 @@ void dfs(int v)
     if (!visited[u])
       dfs(u);
   }
-  ans.push_back(v);
+  ans.push_back(v);    // we can even take a stack instead of a vector
 }
 
 void topological_sort()
@@ -51,3 +49,63 @@ int main()
   cout << '\n';
   return 0;
 }
+
+
+
+/*
+
+
+
+DO NOT TAKE VISITED ARRAY...
+	vector<int> topoSort(int V, vector<int> adj[]) {
+	    // code here
+	    
+	    int indeg[V];
+	  
+	    memset(indeg,0,sizeof(indeg));
+	   for(int i=0;i<V;i++)
+	     for(int child:adj[i])
+	    {
+	        indeg[child]++;
+	    }
+	    
+	  
+	      
+	
+	     queue<int> q;
+	    for(int i=0;i<V;i++)
+	      {
+	          if(indeg[i]==0)
+	          {
+	               q.push(i);
+	            
+	          }
+	           
+	      }
+	    
+	   vector<int> topo;
+	    while(!q.empty())
+	    {
+	        int u=q.front();
+	        q.pop();
+	        topo.push_back(u);
+	        for(int child:adj[u])
+	        {
+	          //  if(!vis[child])
+	        //   {
+	                indeg[child]--;
+	                if(indeg[child]==0)
+	                  q.push(child);
+	                
+	            //    vis[child]=1;  
+	                
+	          //  }
+	        }
+	    }
+	    return topo;
+	    
+	}
+
+
+
+*/
