@@ -5,7 +5,7 @@ using namespace std;
 
 // Declaring variables for maintaing prime numbers and to check whether a number is prime or not
 bool isprime[1000006];
-vector<int> prime_numbers;
+vector<int> prime_numbers;  
 vector<pair<int, int>> factors;
 
 // Calculating prime number upto a given range

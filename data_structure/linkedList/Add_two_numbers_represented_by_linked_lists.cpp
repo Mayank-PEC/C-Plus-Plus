@@ -104,7 +104,7 @@ class Solution
         // code here
         //int carry=carry_fuct(first,second);
 
-
+   // this is my solution....
     int len1=0,len2=0;
    
     len1 = length(first);
@@ -211,3 +211,79 @@ int main()
     return 0;
 }
   // } Driver Code Ends
+
+
+
+
+
+
+
+// **********************better solution********************/
+/*
+
+in this solution first and second are provided as
+as reversed LL not the same 
+at the end reverse the result...
+Node* addTwoLists(Node* first, Node* second)
+{
+     
+    // res is head node of the resultant list
+    Node* res = NULL;
+    Node *temp, *prev = NULL;
+    int carry = 0, sum;
+ 
+    // while both lists exist
+    while (first != NULL || second != NULL) {
+        // Calculate value of next
+        // digit in resultant list.
+        // The next digit is sum of
+        // following things
+        // (i) Carry
+        // (ii) Next digit of first
+        // list (if there is a next digit)
+        // (ii) Next digit of second
+        // list (if there is a next digit)
+        sum = carry + (first ? first->data : 0)
+              + (second ? second->data : 0);
+ 
+        // update carry for next calulation
+        carry = (sum >= 10) ? 1 : 0;
+ 
+        // update sum if it is greater than 10
+        sum = sum % 10;
+ 
+        // Create a new node with sum as data
+        temp = newNode(sum);
+ 
+        // if this is the first node then
+        // set it as head of the resultant list
+        if (res == NULL)
+            res = temp;
+ 
+        // If this is not the first
+        // node then connect it to the rest.
+        else
+            prev->next = temp;
+ 
+        // Set prev for next insertion
+        prev = temp;
+ 
+        // Move first and second
+        // pointers to next nodes
+        if (first)
+            first = first->next;
+        if (second)
+            second = second->next;
+    }
+ 
+    if (carry > 0)
+        temp->next = newNode(carry);
+ 
+    // return head of the resultant list
+    return res;
+}
+   
+***********************************************/
+
+
+
